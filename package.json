@@ -23,11 +23,6 @@
       "path": "node_modules/cz-customizable"
     }
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
-  },
   "dependencies": {
     "@types/three": "^0.139.0",
     "postcss-html": "^1.4.1",
