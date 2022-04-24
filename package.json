@@ -1,0 +1,59 @@
+{
+  "name": "vue3-ts-biolerplate",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "commit": "git-cz",
+    "preview": "vite preview",
+    "lint": "eslint --fix ./src --ext .vue,.js,.ts",
+    "stylelint": "stylelint src/**/*.{html,vue,css,less,sass,scss} --allow-empty-input --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts}": "eslint --fix",
+    "src/**/*.{html,vue,css,sass,scss,less}": [
+      "npm run stylelint",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "dependencies": {
+    "postcss-html": "^1.4.1",
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.3",
+    "stylelint": "^14.7.1",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-scss": "^4.2.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "@vitejs/plugin-vue": "^2.3.0",
+    "commitizen": "^4.2.4",
+    "commitlint-config-cz": "^0.13.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.6.0",
+    "husky": "^7.0.0",
+    "less": "^4.1.2",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.2",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.0",
+    "vite-raw-plugin": "^1.0.1",
+    "vue-tsc": "^0.29.8"
+  }
+}

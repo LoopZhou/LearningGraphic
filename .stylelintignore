@@ -1,0 +1,21 @@
+# .stylelintignore
+node_modules
+
+# 旧的不需打包的样式库
+*.min.css
+
+# 其他类型文件
+*.js
+*.jpg
+*.png
+*.eot
+*.ttf
+*.woff
+*.json
+
+*.frag
+*.vert
+
+# 测试和打包目录
+/test/
+/dist/
