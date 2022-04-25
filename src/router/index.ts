@@ -4,6 +4,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'index',
+    redirect: 'home',
+  },
+  {
+    path: '/home',
+    name: 'home',
     component: () => import('@/views/home-index.vue'),
   },
   {
