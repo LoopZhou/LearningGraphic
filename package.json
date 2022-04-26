@@ -24,12 +24,14 @@
     }
   },
   "dependencies": {
+    "@types/three": "^0.139.0",
     "postcss-html": "^1.4.1",
     "postcss-less": "^6.0.0",
     "postcss-scss": "^4.0.3",
     "stylelint": "^14.7.1",
     "stylelint-config-standard": "^25.0.0",
     "stylelint-scss": "^4.2.0",
+    "three": "^0.139.2",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14"
   },
