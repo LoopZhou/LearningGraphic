@@ -22,14 +22,18 @@
 
     <h3>triange - webgpu</h3>
     <canvas id="webgpu" width="200" height="100" />
+
+    <h3>triange - three</h3>
+    <div id="three" style="width: 200px; height: 100px" />
   </div>
 </template>
 
 <script>
 import { onMounted, ref } from 'vue';
-import vertexShader from './shader/basic/basic.vert';
-import fragmentShader from './shader/basic/basic.frag';
+import vertexShader from './webgl/basic.vert';
+import fragmentShader from './webgl/basic.frag';
 import { webgpuShader } from './webgpu/shader';
+import ThreeJs from './three/index';
 
 export default {
   name: 'RenderTriangle',
@@ -108,6 +112,7 @@ export default {
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
 
+    // webgpu
     const initWebGPU = async () => {
       const adapter = await navigator.gpu.requestAdapter();
       const device = await adapter.requestDevice();
@@ -195,6 +200,7 @@ export default {
       initCanvas2D();
       initWebgl();
       checkWebGPU();
+      new ThreeJs();
     });
   },
 };
