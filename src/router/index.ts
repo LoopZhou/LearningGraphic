@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'render-triangle',
     component: () => import('@/views/render-triangle/index.vue'),
   },
+  {
+    path: '/tsx-test',
+    name: 'tsx',
+    component: () => import('@/views/tsx-test'),
+  },
 ];
 
 const router = createRouter({
