@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'tsx',
     component: () => import('@/views/tsx-test'),
   },
+  {
+    path: '/raytracer',
+    name: 'raytracer',
+    component: () => import('@/views/raytracer-canvas.vue'),
+  },
 ];
 
 const router = createRouter({
