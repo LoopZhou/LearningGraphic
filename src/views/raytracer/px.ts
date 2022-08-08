@@ -1,3 +1,6 @@
+/*
+ * 一个点的坐标信息和 rgba 值
+ */
 export default class Px {
   r: number;
   g: number;

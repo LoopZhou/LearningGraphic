@@ -1,9 +1,30 @@
 /**
- * 基本结构
+ * 增加三个Sphere, 增加HitList
  */
-
 import RenderTask from './renderTask';
 import Px from './px';
+
+import Vec3 from './vec3';
+import Camera from './camera';
+import Sphere from './sphere';
+import HitList from './hitList';
+
+const camera = new Camera(
+  new Vec3(0, 0, 1), //origin
+  new Vec3(-2, -1, -1), //leftBottom
+  new Vec3(4, 0, 0), //horizontal
+  new Vec3(0, 2, 0) //vertical
+);
+
+const ball = new Sphere(new Vec3(0, 0, -1), 0.5);
+const balll = new Sphere(new Vec3(1, 0, -1), 0.5);
+const ballll = new Sphere(new Vec3(-1, 0, -1), 0.5);
+const earth = new Sphere(new Vec3(0, -100.5, -1), 100);
+
+const world = new HitList(ball, balll, ballll, earth);
+
+// 采样次数
+const n = 50;
 
 // 消息类型
 const appMsg: { [key: string]: Function } = {
@@ -23,22 +44,44 @@ onmessage = function (e) {
   }
 };
 
-// 设置成单色白色
-function renderPixel(v: Px, width: number, height: number) {
-  v.r = v.g = v.b = v.a = 255;
-}
-
-// 根据像素坐标位置计算当前坐标的颜色
-function color(_x: number, _y: number) {
-  // 这里之所以将 y 转换为 1-y ，是应为从 canvas 直接得到的坐标 y 轴的正方向是向下的，而我们更为熟悉的是 y 轴正方向向上的坐标系
+function color2(_x: number, _y: number) {
   const [x, y] = [_x, 1 - _y];
-  return [x, y, 0.2];
+
+  const r = camera.getRay(x, y);
+
+  const hit = world.hit(r, 0, Infinity);
+
+  let res: Vec3;
+
+  if (hit) {
+    // 用颜色来表现 hit 法线的方向
+    res = hit.normal.unitVec().add(1).mul(0.5);
+  } else {
+    // 设置背景色
+    const unitDirection = r.direction.unitVec(),
+      t = (unitDirection.e1 + 1.0) * 0.5;
+
+    res = Vec3.add(new Vec3(1, 1, 1).mul(1 - t), new Vec3(0.3, 0.5, 1).mul(t));
+  }
+
+  return [res.e0, res.e1, res.e2];
 }
 
-function renderPixel2(v: Px, width: number, height: number) {
-  [v.r, v.g, v.b, v.a] = [...color(v.x / width, v.y / height), 1].map((v) =>
+function renderPixel(v: Px, width: number, height: number) {
+  [v.r, v.g, v.b, v.a] = [...color2(v.x / width, v.y / height), 1].map((v) =>
     Math.floor(v * 255.9)
   );
+}
+
+function renderPixelSampler(v: Px, width: number, height: number) {
+  [v.r, v.g, v.b, v.a] = new Array(n)
+    .fill(0)
+    .map((m) =>
+      color2((v.x + Math.random()) / width, (v.y + Math.random()) / height)
+    )
+    .reduce((res, v) => res.map((item, i) => (item += v[i])), [0, 0, 0])
+    .map((v) => Math.floor((v / n) * 255.99))
+    .concat([255]);
 }
 
 // 将每个像素拆分分别计算，最后将所有计算结果发送回去
@@ -48,7 +91,8 @@ function render(task: RenderTask) {
   const { pixels, width, height } = task;
 
   pixels.forEach((v, i) => {
-    renderPixel(v, width, height);
+    // renderPixel(v, width, height);
+    renderPixelSampler(v, width, height);
   });
   (<any>postMessage)({
     method: 'allComplete',

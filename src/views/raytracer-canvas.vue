@@ -1,8 +1,11 @@
 <template>
   <div class="raytracer">
+    <!-- 进度条 -->
     <div class="processbar">
-      <div class="processline" />
+      <div id="processline" class="processline" />
     </div>
+
+    <!-- 绘图区 -->
     <canvas
       id="raytracer-canvas"
       class="canvas"
@@ -14,10 +17,10 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-// import { storeToRefs } from 'pinia';
 import { useRaytracerStore } from '@/store/raytracer';
 import Px from './raytracer/px';
 import RenderTask from './raytracer/renderTask';
+import Worker from './raytracer/task4.worker?worker';
 
 const raytracerStore = useRaytracerStore();
 const { imageWidth, imageHeight } = raytracerStore;
@@ -72,13 +75,15 @@ onMounted(() => {
   };
 
   const performTask = (task: RenderTask) => {
-    const worker = new Worker('./raytracer/task2.worker.js');
+    // task 发送到 work 中执行
+    const worker = new Worker();
 
     worker.postMessage({
       method: 'render',
       args: [task],
     });
 
+    // 接收 worker 传回来的结果
     worker.onmessage = function (res: {
       data: { method: string; args: any[] };
     }) {
@@ -98,16 +103,19 @@ onMounted(() => {
     height: number,
     amount: number
   ) => {
-    console.log('initTasks', ctx, width, height, amount);
+    // canvas像素总数
     const n = width * height;
+    // 每个 task 需要处理的像素数量len
     const len = Math.ceil(n / amount);
 
     let task = new RenderTask([], width, height);
 
+    // 两层循环每个像素点，外层为纵坐标 y，内层为横坐标 x；横向扫描
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         task.pixels.push(new Px(x, y));
 
+        // 每当task 内部的像素数量等于 len 时候或者处理到最后一个像素的时候，执行这个task, 创建新的task
         if (task.pixels.length >= len || y * width + x === n - 1) {
           performTask(task);
           task = new RenderTask([], width, height);
@@ -115,6 +123,48 @@ onMounted(() => {
       }
     }
   };
+
+  // 优化：给 worker 随机分配像素
+  function initTasks2(
+    ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    amount: number
+  ) {
+    const n = width * height;
+    const len = Math.ceil(n / amount);
+
+    // 二维数组来存 pixel
+    const pixels: Px[][] = [];
+    for (let y = 0; y < height; y++) {
+      pixels.push([]);
+      for (let x = 0; x < width; x++) {
+        pixels[y].push(new Px(x, y));
+      }
+    }
+
+    let task = new RenderTask([], width, height);
+    while (pixels.length) {
+      const y = Math.floor(Math.random() * (pixels.length - 0.0001));
+
+      const pxs = pixels[y];
+
+      const x = Math.floor(Math.random() * (pxs.length - 0.0001));
+
+      const px = pxs.splice(x, 1)[0];
+
+      task.pixels.push(px);
+
+      if (pxs.length === 0) {
+        pixels.splice(y, 1);
+      }
+
+      if (task.pixels.length >= len || pixels.length === 0) {
+        performTask(task);
+        task = new RenderTask([], width, height);
+      }
+    }
+  }
 
   initTasks(ctx, imageWidth, imageHeight, 4);
 });
