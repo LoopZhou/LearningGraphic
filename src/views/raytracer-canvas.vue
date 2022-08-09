@@ -20,7 +20,7 @@ import { onMounted } from 'vue';
 import { useRaytracerStore } from '@/store/raytracer';
 import Px from './raytracer/px';
 import RenderTask from './raytracer/renderTask';
-import Worker from './raytracer/task10.worker?worker';
+import Worker from './raytracer/task11.worker?worker';
 
 const raytracerStore = useRaytracerStore();
 const { imageWidth, imageHeight } = raytracerStore;

@@ -7,16 +7,15 @@ export default class Camera {
   horizontal: Vec3;
   leftBottom: Vec3;
 
-  constructor(
-    origin: Vec3,
-    leftBottom: Vec3,
-    horizontal: Vec3,
-    vertical: Vec3
-  ) {
-    this.origin = origin;
-    this.vertical = vertical;
-    this.leftBottom = leftBottom;
-    this.horizontal = horizontal;
+  constructor(vfov: number, aspect: number) {
+    const theta = (vfov * Math.PI) / 180;
+    const harfHeight = Math.tan(theta / 2);
+    const harfWidth = harfHeight * aspect;
+
+    this.origin = new Vec3(0, 0, 0);
+    this.vertical = new Vec3(0, harfHeight * 2, 0);
+    this.horizontal = new Vec3(harfWidth * 2, 0, 0);
+    this.leftBottom = new Vec3(-harfWidth, -harfHeight, -1);
   }
 
   getRay(x: number, y: number): Ray {
