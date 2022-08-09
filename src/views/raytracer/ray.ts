@@ -24,7 +24,7 @@ export default class Ray {
   }
 
   // 折射
-  refract(hit: HitRecord, ref: number) {
+  refract0(hit: HitRecord, ref: number) {
     let outWardNormal: Vec3 = hit.normal;
     let niOverNt: number = ref;
 
@@ -37,6 +37,31 @@ export default class Ray {
     const res = refract(this.direction, outWardNormal, niOverNt);
 
     if (res) {
+      return new Ray(hit.p, res);
+    }
+    return this.reflect(hit);
+  }
+
+  refract(hit: HitRecord, ref: number) {
+    let outWardNormal: Vec3 = hit.normal;
+    let niOverNt: number = ref;
+    let consine = 0;
+
+    // 光线方向和折射率计算 consine
+    if (Vec3.dot(this.direction, hit.normal) > 0) {
+      outWardNormal = outWardNormal.mul(-1);
+      consine =
+        (ref * Vec3.dot(this.direction, hit.normal)) / this.direction.length();
+    } else {
+      niOverNt = 1 / niOverNt;
+      consine =
+        (-1 * Vec3.dot(this.direction, hit.normal)) / this.direction.length();
+    }
+
+    const res = refract(this.direction, outWardNormal, niOverNt);
+
+    // 得到的光线本是由折射光线和反射光线叠加而成，这里可以通过计算概率的方式避免出现多条光线的计算，以简化代码优化速度。
+    if (res && Math.random() > schlick(consine, niOverNt)) {
       return new Ray(hit.p, res);
     }
     return this.reflect(hit);
@@ -68,4 +93,11 @@ function refract(v: Vec3, n: Vec3, niOverNt: number) {
     .sub(n.mul(dt))
     .mul(niOverNt)
     .sub(n.mul(discriminant ** 0.5));
+}
+
+// 光线反射强度
+function schlick(cosine: number, refIdx: number): number {
+  let r0 = (1 - refIdx) / (1 + refIdx);
+  r0 = r0 * r0;
+  return r0 + (1 + r0) * (1 - cosine) ** 5;
 }
