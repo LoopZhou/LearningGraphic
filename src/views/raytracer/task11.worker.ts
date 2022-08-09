@@ -15,7 +15,13 @@ import Metal from './metal';
 // import Lambertian from './lambertian';
 import Dielectric from './dielectric';
 
-const camera = new Camera(120, 2);
+const camera = new Camera(
+  new Vec3(-2, 2, 1),
+  new Vec3(0, 0, -1),
+  new Vec3(0, 1, 0),
+  90,
+  2
+);
 
 const ball = new Sphere(
   new Vec3(0, 0, -1),
