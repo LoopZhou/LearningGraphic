@@ -20,7 +20,7 @@ import { onMounted } from 'vue';
 import { useRaytracerStore } from '@/store/raytracer';
 import Px from './raytracer/px';
 import RenderTask from './raytracer/renderTask';
-import Worker from './raytracer/task12.worker?worker';
+import Worker from './raytracer/task13.worker?worker';
 
 const raytracerStore = useRaytracerStore();
 const { imageWidth, imageHeight } = raytracerStore;
@@ -79,7 +79,7 @@ onMounted(() => {
     const worker = new Worker();
 
     worker.postMessage({
-      method: 'render2',
+      method: 'render3',
       args: [task],
     });
 
