@@ -18,6 +18,9 @@ export default class Camera {
   v: Vec3;
   w: Vec3;
 
+  time0: number;
+  time1: number;
+
   constructor(
     lookfrom: Vec3,
     lookto: Vec3,
@@ -25,11 +28,16 @@ export default class Camera {
     vfov: number,
     aspect: number,
     aperture: number,
+    t0: number,
+    t1: number,
     focuDist?: number
   ) {
     const theta = (vfov * Math.PI) / 180;
     const harfHeight = Math.tan(theta / 2);
     const harfWidth = harfHeight * aspect;
+
+    this.time0 = t0;
+    this.time1 = t1;
 
     this.lensRadius = aperture / 2;
     this.origin = lookfrom;
@@ -56,7 +64,8 @@ export default class Camera {
         .add(this.horizontal.mul(x))
         .add(this.vertical.mul(y))
         .sub(this.origin)
-        .sub(offset)
+        .sub(offset),
+      this.time0 + Math.random() * (this.time1 - this.time0)
     );
   }
 }

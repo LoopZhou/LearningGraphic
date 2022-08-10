@@ -27,7 +27,11 @@ export default class Lambertian implements Material {
 
   // 光线方向就是沿法线方向添加随机偏移, 反射结果和入射光无关，仅仅与 hit 的位置法线方向有关
   scatter(rayIn: Ray, hit: HitRecord): [Ray, Attenuation] {
-    const ray = new Ray(hit.p, hit.normal.add(randomInUnitSphere()));
+    const ray = new Ray(
+      hit.p,
+      hit.normal.add(randomInUnitSphere()),
+      rayIn.time
+    );
     return [ray, this.albedo];
   }
 }

@@ -8,8 +8,10 @@ import HitRecord from './hitRecord';
 export default class Ray {
   origin: Vec3;
   direction: Vec3;
-  constructor(origin: Vec3, direction: Vec3) {
+  time: number;
+  constructor(origin: Vec3, direction: Vec3, time: number) {
     this.origin = origin;
+    this.time = time;
     this.direction = direction;
   }
 
@@ -20,7 +22,11 @@ export default class Ray {
 
   // 反射
   reflect(hit: HitRecord) {
-    return new Ray(hit.p, reflect(this.direction.unitVec(), hit.normal));
+    return new Ray(
+      hit.p,
+      reflect(this.direction.unitVec(), hit.normal),
+      this.time
+    );
   }
 
   // 折射
@@ -37,7 +43,7 @@ export default class Ray {
     const res = refract(this.direction, outWardNormal, niOverNt);
 
     if (res) {
-      return new Ray(hit.p, res);
+      return new Ray(hit.p, res, this.time);
     }
     return this.reflect(hit);
   }
@@ -62,7 +68,7 @@ export default class Ray {
 
     // 得到的光线本是由折射光线和反射光线叠加而成，这里可以通过计算概率的方式避免出现多条光线的计算，以简化代码优化速度。
     if (res && Math.random() > schlick(consine, niOverNt)) {
-      return new Ray(hit.p, res);
+      return new Ray(hit.p, res, this.time);
     }
     return this.reflect(hit);
   }
