@@ -17,11 +17,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/render-triangle/index.vue'),
   },
   {
-    path: '/tsx-test',
-    name: 'tsx',
-    component: () => import('@/views/tsx-test'),
-  },
-  {
     path: '/raytracer',
     name: 'raytracer',
     component: () => import('@/views/raytracer-canvas.vue'),
