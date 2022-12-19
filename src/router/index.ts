@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/color-triangle/index.vue'),
   },
   {
-    path: '/three-tutorial',
+    path: '/three-tutorial/:example',
     name: 'three-tutorial',
     component: () => import('@/views/three-tutorial/index.vue'),
   },
