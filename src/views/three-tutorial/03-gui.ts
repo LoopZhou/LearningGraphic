@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 // import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
 import { GUI } from 'lil-gui';
 
-export default class Three01 {
+export default class Three03 {
   scene: THREE.Scene | null = null;
   camera: THREE.PerspectiveCamera | null = null;
   renderer: THREE.WebGLRenderer | null = null;

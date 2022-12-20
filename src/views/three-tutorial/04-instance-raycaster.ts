@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GUI } from 'lil-gui';
 
 // according to https://threejs.org/examples/#webgl_instancing_raycast
-export default class Three01 {
+export default class Three04 {
   scene: THREE.Scene = new THREE.Scene();
   camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(
     60,
