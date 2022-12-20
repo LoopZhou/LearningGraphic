@@ -11,8 +11,11 @@ import { useRoute } from 'vue-router';
 // http://localhost:4000/#/three-tutorial/05-omitPhysics
 
 const { example = '01-base-three' } = useRoute().params;
-const exampleFile = await import(`./${example}`);
-new exampleFile.default();
+const importModules = import.meta.globEager('./*.ts');
+const current = importModules[`./${example}.ts`];
+if (current) {
+  new current.default();
+}
 </script>
 
 <style lang="less">
