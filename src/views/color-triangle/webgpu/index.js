@@ -6,37 +6,29 @@ export default class WebGPU {
     this.init();
   }
 
-  init(): void {
+  init() {
     this.checkWebGPU();
   }
 
-  checkWebGPU(): void {
+  checkWebGPU() {
     if (navigator.gpu) {
       this.initWebGPU();
       return;
     }
 
-    const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
-      document.getElementById('webgpu')
-    );
+    const canvas = document.getElementById('webgpu');
 
-    const ctx: CanvasRenderingContext2D = <CanvasRenderingContext2D>(
-      canvas.getContext('2d')
-    );
+    const ctx = canvas.getContext('2d');
 
     ctx.font = '20px Georgia';
     ctx.fillText('Not Support', 10, 50);
   }
 
   async initWebGPU() {
-    const adapter: GPUAdapter = <GPUAdapter>(
-      await navigator.gpu.requestAdapter()
-    );
-    const device: GPUDevice = <GPUDevice>await adapter?.requestDevice();
+    const adapter = await navigator.gpu.requestAdapter();
+    const device = await adapter?.requestDevice();
 
-    const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
-      document.getElementById('webgpu')
-    );
+    const canvas = document.getElementById('webgpu');
     const context = canvas.getContext('webgpu');
 
     // 配置画布
@@ -91,6 +83,7 @@ export default class WebGPU {
     const vertexBuffer = device.createBuffer({
       label: 'GPUBuffer store vertex',
       size: triangle.vertex.byteLength,
+      // eslint-disable-next-line
       usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
       //mappedAtCreation: true
     });
@@ -99,6 +92,7 @@ export default class WebGPU {
     const colorBuffer = device.createBuffer({
       label: 'GPUBuffer store rgba color',
       size: 4 * 4, // 4 * float32
+      // eslint-disable-next-line
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     });
     device.queue.writeBuffer(colorBuffer, 0, new Float32Array([1, 0.5, 0, 1]));

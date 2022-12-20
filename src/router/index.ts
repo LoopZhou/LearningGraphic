@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'color-triangle',
     component: () => import('@/views/color-triangle/index.vue'),
   },
+  {
+    path: '/three-tutorial/:example',
+    name: 'three-tutorial',
+    component: () => import('@/views/three-tutorial/index.vue'),
+  },
 ];
 
 const router = createRouter({
