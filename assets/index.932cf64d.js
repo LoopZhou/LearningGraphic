@@ -1,1 +1,0 @@
-import{d as a,u as e,w as s,o as t,c as n,h as r}from"./index.0cfecfaf.js";const o=a({__name:"index",async setup(a){let o,_;const{example:c="01-base-three"}=e().params;return new(([o,_]=s((()=>r((()=>import(`./${c}`)),[]))),o=await o,_(),o).default),(a,e)=>(t(),n("div"))}});export{o as default};
