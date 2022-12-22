@@ -9,6 +9,7 @@ import { useRoute } from 'vue-router';
 // http://localhost:4000/#/three-tutorial/03-gui
 // http://localhost:4000/#/three-tutorial/04-instance-raycaster
 // http://localhost:4000/#/three-tutorial/05-omitPhysics
+// http://localhost:4000/#/three-tutorial/06-shadow-map-viewer
 
 const { example = '01-base-three' } = useRoute().params;
 const importModules = import.meta.globEager('./*.ts');
