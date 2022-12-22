@@ -151,7 +151,7 @@ export default class Three05 {
   }
 
   initHelper(): void {
-    this.scene.add(this.ambientLight);
+    this.scene.add(this.axesHelper);
     this.scene.add(new THREE.CameraHelper(this.spotLight.shadow.camera));
     this.scene.add(new THREE.CameraHelper(this.dirLight.shadow.camera));
   }
