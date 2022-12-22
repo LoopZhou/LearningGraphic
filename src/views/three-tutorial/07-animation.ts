@@ -4,7 +4,7 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { GUI } from 'lil-gui';
 
 // according to https://github.com/mrdoob/three.js/blob/master/examples/misc_animation_keys.html
-export default class Three06 {
+export default class Three07 {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
   renderer: THREE.WebGLRenderer;

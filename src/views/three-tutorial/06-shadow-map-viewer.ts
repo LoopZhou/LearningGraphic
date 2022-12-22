@@ -5,7 +5,7 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { GUI } from 'lil-gui';
 
 // according to https://threejs.org/examples/?q=shadowmap%20view#webgl_shadowmap_viewer
-export default class Three05 {
+export default class Three06 {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
   renderer: THREE.WebGLRenderer;
@@ -60,7 +60,6 @@ export default class Three05 {
   initRender(): void {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.shadowMap.enabled = true;
     document.body.appendChild(this.renderer.domElement);
     document.body.appendChild(this.stats.dom);
 
