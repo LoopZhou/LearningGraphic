@@ -19,3 +19,4 @@ node_modules
 # 测试和打包目录
 /test/
 /dist/
+/public/

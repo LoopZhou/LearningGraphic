@@ -13,6 +13,7 @@ import { useRoute } from 'vue-router';
 // http://localhost:4000/#/three-tutorial/07-animation
 // http://localhost:4000/#/three-tutorial/08-gltf-loader
 // http://localhost:4000/#/three-tutorial/09-skinning-blending
+// http://localhost:4000/#/three-tutorial/10-littlest-tokyo
 
 const { example = '01-base-three' } = useRoute().params;
 const importModules = import.meta.globEager('./*.ts');
