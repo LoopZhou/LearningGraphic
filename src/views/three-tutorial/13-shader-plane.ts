@@ -42,11 +42,7 @@ export default class Three13 {
   }
 
   initScene(): void {
-    this.initMesh();
-  }
-
-  initMesh(): void {
-    // cube
+    // plane
     const geometry = new THREE.PlaneGeometry(2, 2);
 
     const material = new THREE.ShaderMaterial({
