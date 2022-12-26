@@ -16,6 +16,7 @@ import { useRoute } from 'vue-router';
 // http://localhost:4000/#/three-tutorial/10-littlest-tokyo
 // http://localhost:4000/#/three-tutorial/11-clipping
 // http://localhost:4000/#/three-tutorial/12-texture
+// http://localhost:4000/#/three-tutorial/13-shader-plane
 
 const { example = '01-base-three' } = useRoute().params;
 const importModules = import.meta.globEager('./*.ts');
