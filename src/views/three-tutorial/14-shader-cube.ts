@@ -3,7 +3,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import vertexShader from '../../assets/shader/vertex/basic-cube.vert?raw';
 import fragment1 from '../../assets/shader/frag/shader-plane.frag?raw';
-import fragment2 from '../../assets/shader/frag/cube2.frag?raw';
+// import fragment2 from '../../assets/shader/frag/cube2.frag?raw';
+import fragment2 from '../../assets/shader/frag/plasma.frag?raw';
 import fragment3 from '../../assets/shader/frag/cube3.frag?raw';
 import fragment4 from '../../assets/shader/frag/cube4.frag?raw';
 
