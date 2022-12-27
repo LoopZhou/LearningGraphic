@@ -26,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'three-tutorial',
     component: () => import('@/views/three-tutorial/index.vue'),
   },
+  {
+    path: '/donut',
+    name: 'donut',
+    component: () => import('@/views/donut/index.vue'),
+  },
 ];
 
 const router = createRouter({

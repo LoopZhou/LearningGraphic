@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{vue,js,ts}": "eslint --fix",
+    "src/**/*.{vue,js,ts}": "eslint --fix",
     "src/**/*.{html,vue,css,sass,scss,less}": [
       "npm run stylelint",
       "git add"
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@types/three": "^0.139.0",
+    "gsap": "^3.11.4",
     "lil-gui": "^0.17.0",
     "postcss-html": "^1.4.1",
     "postcss-less": "^6.0.0",
