@@ -1,6 +1,7 @@
 module.exports = {
   extends: 'stylelint-config-standard',
   rules: {
+    'function-no-unknown': null,
     "no-duplicate-selectors": null,
     "number-leading-zero": "always",
     "block-no-empty": null,

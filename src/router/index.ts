@@ -31,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'donut',
     component: () => import('@/views/donut/index.vue'),
   },
+  {
+    path: '/abigail-bloom',
+    name: 'abigail-bloom',
+    component: () => import('@/views/abigail-bloom/index.vue'),
+  },
 ];
 
 const router = createRouter({
