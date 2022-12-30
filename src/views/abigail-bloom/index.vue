@@ -2,7 +2,7 @@
 <template>
   <div :class="['abigail-bloom', isLightTheme ? 'light-theme' : 'dark-theme']">
     <div class="experience">
-      <canvas class="experience-canvas"></canvas>
+      <canvas ref="experienceRef" class="experience-canvas"></canvas>
     </div>
 
     <!-- Preloader -->
@@ -100,20 +100,29 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+// reference https://github.com/andrewwoan/abigail-bloom-portolio-bokoko33
+import { onMounted, ref, reactive } from 'vue';
 import Loading from './components/loading.vue';
 import ThemeSwitch from './components/theme-switch.vue';
 import HeroSection from './components/hero-section.vue';
 import SectionPart from './components/section-part.vue';
+import Experience from './experience-canvas/Experience';
 
 const isLightTheme = ref(true);
+const experienceRef = ref(null);
+let experience;
 
 const onChangeTheme = () => {
-  console.log('onChangeTheme');
+  // eslint-disable-next-line no-console
+  console.dir(experience.world.environment);
+  experience.switchTheme(isLightTheme.value ? 'light' : 'dark');
 };
 
 onMounted(() => {
-  console.log('onMounted');
+  // eslint-disable-next-line no-console
+  console.dir(new Experience(experienceRef.value));
+  experience = new Experience(experienceRef.value);
+  experience.update();
 });
 </script>
 
@@ -145,7 +154,7 @@ onMounted(() => {
     background-color: var(--color-background);
     width: 100%;
     height: 100vh;
-    opacity: 0;
+    opacity: 1;
     z-index: 999999;
 
     .preloader-wrapper {

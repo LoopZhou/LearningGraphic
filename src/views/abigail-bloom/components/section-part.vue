@@ -1,6 +1,13 @@
 <template>
   <section :class="['first-section', 'section', position]">
-    <div class="progress-wrapper progress-bar-wrapper-left">
+    <div
+      :class="[
+        'progress-wrapper',
+        position === 'right'
+          ? 'progress-bar-wrapper-right'
+          : 'progress-bar-wrapper-left',
+      ]"
+    >
       <div class="progress-bar"></div>
     </div>
 
