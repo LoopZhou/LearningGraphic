@@ -3465,6 +3465,11 @@ text-table@^0.2.0:
   resolved "https://mirrors.tencent.com/npm/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+three-tween@^1.0.0:
+  version "1.0.0"
+  resolved "https://mirrors.tencent.com/npm/three-tween/-/three-tween-1.0.0.tgz#da69bbbcccf321bfb8356358c594ceb1f0a7fd66"
+  integrity sha512-JoRS/llDmrpZq7quzuk/Y9lDDW2ziW9eulMQDMi+Qfy5GcWhnnRYcoNcPFw/VPm4xptehcWDSNNBBdweX6ZIWw==
+
 three@^0.139.2:
   version "0.139.2"
   resolved "https://mirrors.tencent.com/npm/three/-/three-0.139.2.tgz#b110799a15736df673b9293e31653a4ac73648dd"
