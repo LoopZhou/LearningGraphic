@@ -181,7 +181,7 @@ const transition = () => {
         THREE.MathUtils.randFloat(1000, 4000)
       )
       .onUpdate(function () {
-        // 是this.position
+        // 是this.position, onUpdate中的this, 需要用外部的this需要在外层赋值如self = this;使用self
         geometry.attributes.position.array[i] = this.position;
         geometry.attributes.position.needsUpdate = true;
       })
