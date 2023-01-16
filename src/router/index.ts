@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'abigail-bloom',
     component: () => import('@/views/abigail-bloom/index.vue'),
   },
+  {
+    path: '/three-point',
+    name: 'three-point',
+    component: () => import('@/views/three-point/index.vue'),
+  },
 ];
 
 const router = createRouter({

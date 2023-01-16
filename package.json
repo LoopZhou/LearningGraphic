@@ -36,6 +36,7 @@
     "stylelint-config-standard": "^25.0.0",
     "stylelint-scss": "^4.2.0",
     "three": "^0.139.2",
+    "three-tween": "^1.0.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14"
   },
