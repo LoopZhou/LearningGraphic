@@ -41,6 +41,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'three-point',
     component: () => import('@/views/three-point/index.vue'),
   },
+  {
+    path: '/shader',
+    name: 'shader',
+    component: () => import('@/views/shader/index.vue'),
+  },
 ];
 
 const router = createRouter({
