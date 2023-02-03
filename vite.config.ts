@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import glslRawPlugin from 'vite-raw-plugin';
+import AutoImport from 'unplugin-auto-import/vite';
 // 如果编辑器提示 path 模块找不到，则可以安装一下 @types/node -> npm i @types/node -D
 import { resolve } from 'path';
 
@@ -9,6 +10,10 @@ export default defineConfig({
     vue(),
     glslRawPlugin({
       fileRegex: /\.(glsl|vert|frag)$/,
+    }),
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+      dts: 'src/typing/auto-import.d.ts',
     }),
   ],
   resolve: {
