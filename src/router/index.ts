@@ -46,6 +46,25 @@ const routes: Array<RouteRecordRaw> = [
     name: 'shader',
     component: () => import('@/views/shader/index.vue'),
   },
+  {
+    path: '/babylonjs-demo',
+    name: 'babylonjs-demo',
+    component: () => import('@/views/babylonjs-demo/index.vue'),
+    children: [
+      {
+        path: 'demo',
+        component: () => import('@/views/babylonjs-demo/demo.vue'),
+      },
+      {
+        path: 'setup',
+        component: () => import('@/views/babylonjs-demo/setup.vue'),
+      },
+      {
+        path: 'setup-new',
+        component: () => import('@/views/babylonjs-demo/setup-new.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
