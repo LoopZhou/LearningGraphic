@@ -20,7 +20,7 @@ void main () {
 
   float offset = 0.5;
 
-  float initialPhase = frequency * time;
+  float initialPhase = frequency * time * 0.1;
 
   float y = amplitude * sin((angularVelocity * vUv.x) + initialPhase) + offset;
 
