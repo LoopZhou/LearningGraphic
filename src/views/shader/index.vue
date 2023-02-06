@@ -16,7 +16,9 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/texture-reverse.frag?raw';
 // import fragmentShader from './frag/texture-blend.frag?raw';
 // import fragmentShader from './frag/uv.frag?raw';
-import fragmentShader from './frag/texture-stroke.frag?raw';
+// import fragmentShader from './frag/texture-stroke.frag?raw';
+// import fragmentShader from './frag/texture-dots.frag?raw';
+import fragmentShader from './frag/sin-wave.frag?raw';
 
 const threeRef = ref(null);
 
