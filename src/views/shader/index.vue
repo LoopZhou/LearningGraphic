@@ -24,7 +24,8 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/texture-noise.frag?raw';
 // import fragmentShader from './frag/texture-uv.frag?raw';
 // import fragmentShader from './frag/texture-dissolve.frag?raw';
-import fragmentShader from './frag/texture-mosaic.frag?raw';
+// import fragmentShader from './frag/texture-mosaic.frag?raw';
+import fragmentShader from './frag/uv-circle.frag?raw';
 
 const threeRef = ref(null);
 
