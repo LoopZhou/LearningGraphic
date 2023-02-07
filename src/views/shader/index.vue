@@ -16,7 +16,16 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/texture-reverse.frag?raw';
 // import fragmentShader from './frag/texture-blend.frag?raw';
 // import fragmentShader from './frag/uv.frag?raw';
-import fragmentShader from './frag/texture-stroke.frag?raw';
+// import fragmentShader from './frag/texture-stroke.frag?raw';
+// import fragmentShader from './frag/texture-dots.frag?raw';
+// import fragmentShader from './frag/sin-wave.frag?raw';
+// import fragmentShader from './frag/texture-blur.frag?raw';
+// import fragmentShader from './frag/texture-mask.frag?raw';
+// import fragmentShader from './frag/texture-noise.frag?raw';
+// import fragmentShader from './frag/texture-uv.frag?raw';
+// import fragmentShader from './frag/texture-dissolve.frag?raw';
+// import fragmentShader from './frag/texture-mosaic.frag?raw';
+import fragmentShader from './frag/uv-circle.frag?raw';
 
 const threeRef = ref(null);
 
@@ -31,12 +40,16 @@ const uniforms = {
   },
   colorTexture: {
     value: new THREE.TextureLoader().load('textures/disturb.jpg'),
+    // value: new THREE.TextureLoader().load('textures/crate.git'),
   },
   blendTexture: {
     value: new THREE.TextureLoader().load('textures/simpleShadow.jpg'),
   },
   whiteDocTexture: {
     value: new THREE.TextureLoader().load('textures/white-dot.png'),
+  },
+  noiseTexture: {
+    value: new THREE.TextureLoader().load('textures/perlin_noise.jpg'),
   },
   v: {
     value: 1.0 / 256.0,
