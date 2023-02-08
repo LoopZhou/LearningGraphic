@@ -29,7 +29,9 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/uv-circle-regular.frag?raw';
 // import fragmentShader from './frag/fwidth-coord.frag?raw';
 // import fragmentShader from './frag/fwidth-grid.frag?raw';
-import fragmentShader from './frag/fwidth-line.frag?raw';
+// import fragmentShader from './frag/fwidth-line.frag?raw';
+// import fragmentShader from './frag/fwidth-sin.frag?raw';
+import fragmentShader from './frag/fwidth-smoothstep.frag?raw';
 
 const threeRef = ref(null);
 

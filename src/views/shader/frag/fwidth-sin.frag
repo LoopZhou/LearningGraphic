@@ -1,4 +1,8 @@
+// define不能加；
+#define PI 3.14159
+
 uniform vec2 resolution;
+uniform float time;
 
 varying vec2 vUv;
 
@@ -52,16 +56,39 @@ float segment(in vec2 p, in vec2 a, in vec2 b, in float w) {
   return f;
 }
 
+float func(in float x) {
+  // 周期
+  float T = 3.0 * sin(time * 0.1);
+  return sin(2.0 * PI / T * x);
+  // return sin(x);
+}
+
+vec2 fixCoord(in vec2 c) {
+  return 3.0 * (2.0 * c  - resolution.xy) / min(resolution.y, resolution.x);
+}
+
+float funcPlot(in vec2 uv) {
+  float f = 0.0;
+  // 从左到右的遍历，画一个线段
+  for(float x = 0.0; x <= resolution.x; x += 1.0) {
+    // fixed x: x坐标修正
+    float fx = fixCoord(vec2(x, 0.0)).x;
+    float nfx = fixCoord(vec2(x + 1.0, 0.0)).x;
+    f += segment(uv, vec2(fx, func(fx)), vec2(nfx, func(nfx)), fwidth(uv.x));
+  }
+  
+  // 有加法，规整到[0, 1];
+  return clamp(f, 0.0, 1.0);
+}
+
 // 网格
 void main () {
   // 利用uv把坐标设置成[-3, 3], [0,0]在中心
   vec2 uv = 3.0 * fixUV();
   vec3 color = grid(uv);
 
-  // 绘制线段
-  // color += vec3(segment(uv, vec2(1.0, 2.0), vec2(-2.0, -2.0), fwidth(uv.x)));
-  // 混合使用mix
-  float isLine = segment(uv, vec2(1.0, 2.0), vec2(-2.0, -2.0), fwidth(uv.x));
+  // 绘制sin线段
+  float isLine = funcPlot(uv);
   // mix混合函数，把color和yellow颜色混合，最后一个参数混合比例，0:全部是color, 1:全部是yellow
   color = mix(color, vec3(0.0, 1.0, 0.0), isLine);
   gl_FragColor = vec4(color, 1.0);
