@@ -25,7 +25,14 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/texture-uv.frag?raw';
 // import fragmentShader from './frag/texture-dissolve.frag?raw';
 // import fragmentShader from './frag/texture-mosaic.frag?raw';
-import fragmentShader from './frag/uv-circle.frag?raw';
+// import fragmentShader from './frag/uv-circle.frag?raw';
+// import fragmentShader from './frag/uv-circle-regular.frag?raw';
+// import fragmentShader from './frag/fwidth-coord.frag?raw';
+// import fragmentShader from './frag/fwidth-grid.frag?raw';
+// import fragmentShader from './frag/fwidth-line.frag?raw';
+// import fragmentShader from './frag/fwidth-sin.frag?raw';
+// import fragmentShader from './frag/fwidth-smoothstep.frag?raw';
+import fragmentShader from './frag/fwidth-checkerboard.frag?raw';
 
 const threeRef = ref(null);
 
@@ -56,6 +63,12 @@ const uniforms = {
   },
   h: {
     value: 1.0 / 256.0,
+  },
+  resolution: {
+    value: {
+      x: 1.0 * window.innerWidth,
+      y: 1.0 * window.innerHeight,
+    },
   },
 };
 
@@ -97,6 +110,10 @@ const initScene = () => {
 const initListener = () => {
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
+    uniforms.resolution.value = {
+      x: 1.0 * window.innerWidth,
+      y: 1.0 * window.innerHeight,
+    };
   });
 };
 
