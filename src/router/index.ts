@@ -31,6 +31,40 @@ const routes: Array<RouteRecordRaw> = [
     name: 'donut',
     component: () => import('@/views/donut/index.vue'),
   },
+  {
+    path: '/abigail-bloom',
+    name: 'abigail-bloom',
+    component: () => import('@/views/abigail-bloom/index.vue'),
+  },
+  {
+    path: '/three-point',
+    name: 'three-point',
+    component: () => import('@/views/three-point/index.vue'),
+  },
+  {
+    path: '/shader',
+    name: 'shader',
+    component: () => import('@/views/shader/index.vue'),
+  },
+  {
+    path: '/babylonjs-demo',
+    name: 'babylonjs-demo',
+    component: () => import('@/views/babylonjs-demo/index.vue'),
+    children: [
+      {
+        path: 'demo',
+        component: () => import('@/views/babylonjs-demo/demo.vue'),
+      },
+      {
+        path: 'setup',
+        component: () => import('@/views/babylonjs-demo/setup.vue'),
+      },
+      {
+        path: 'setup-new',
+        component: () => import('@/views/babylonjs-demo/setup-new.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
