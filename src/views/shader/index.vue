@@ -25,6 +25,8 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/texture-uv.frag?raw';
 // import fragmentShader from './frag/texture-dissolve.frag?raw';
 // import fragmentShader from './frag/texture-mosaic.frag?raw';
+// import fragmentShader from './frag/texture-bloom.frag?raw';
+import fragmentShader from './frag/texture-progress.frag?raw';
 // import fragmentShader from './frag/uv-circle.frag?raw';
 // import fragmentShader from './frag/uv-circle-regular.frag?raw';
 // import fragmentShader from './frag/fwidth-coord.frag?raw';
@@ -32,7 +34,7 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/fwidth-line.frag?raw';
 // import fragmentShader from './frag/fwidth-sin.frag?raw';
 // import fragmentShader from './frag/fwidth-smoothstep.frag?raw';
-import fragmentShader from './frag/fwidth-checkerboard.frag?raw';
+// import fragmentShader from './frag/fwidth-checkerboard.frag?raw';
 
 const threeRef = ref(null);
 
