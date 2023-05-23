@@ -132,6 +132,8 @@ export default {
 
       const shader = webgpuShader();
       const pipeline = await device.createRenderPipelineAsync({
+        label: 'triangle pipeline',
+        layout: 'auto',
         vertex: {
           module: device.createShaderModule({
             code: shader.vertex,
