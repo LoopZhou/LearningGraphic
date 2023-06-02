@@ -47,6 +47,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/shader/index.vue'),
   },
   {
+    path: '/fabric',
+    name: 'fabric',
+    component: () => import('@/views/fabric/index.vue'),
+  },
+  {
     path: '/babylonjs-demo',
     name: 'babylonjs-demo',
     component: () => import('@/views/babylonjs-demo/index.vue'),
