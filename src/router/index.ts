@@ -98,6 +98,18 @@ const routes: Array<RouteRecordRaw> = [
         path: 'demo7',
         component: () => import('@/views/g6/demo7.vue'),
       },
+      {
+        path: 'demo8',
+        component: () => import('@/views/g6/demo8.vue'),
+      },
+      {
+        path: 'demo9',
+        component: () => import('@/views/g6/demo9.vue'),
+      },
+      {
+        path: 'demo10',
+        component: () => import('@/views/g6/demo10.vue'),
+      },
     ],
   },
 ];

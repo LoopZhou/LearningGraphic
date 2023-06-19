@@ -1,15 +1,12 @@
 <template>
-  <button @click="switchMode">切换模式</button>
   <div id="mountNode"></div>
 </template>
 
 <script setup>
-// 交互模式
-import { onMounted, watch, ref } from 'vue';
+// 一般图layout
+import { onMounted } from 'vue';
 import G6 from '@antv/g6';
 
-const currentMode = ref('default');
-const graph = ref(null);
 const data = {
   // 点集
   nodes: [
@@ -58,20 +55,20 @@ const data = {
     {
       source: '1',
       target: '2',
-      type: 'cubic-horizontal',
+      // type: 'cubic-horizontal',
       sourceAnchor: 0,
     },
     {
       source: '2',
       target: '3',
-      type: 'cubic',
+      // type: 'cubic',
     },
     {
       source: '1',
       target: '3',
       label: 'node1->node3',
       sourceAnchor: 1,
-      type: 'line',
+      // type: 'line',
       style: {
         startArrow: {
           path: G6.Arrow.diamond(10, 10),
@@ -85,7 +82,7 @@ const data = {
       source: '4',
       target: '1',
       label: 'node1->node4',
-      type: 'polyline',
+      // type: 'polyline',
       targetAnchor: 2,
       style: {
         stroke: '#000',
@@ -94,30 +91,15 @@ const data = {
   ],
 };
 
-const switchMode = () => {
-  if (currentMode.value === 'default') {
-    currentMode.value = 'edit';
-  } else {
-    currentMode.value = 'default';
-  }
-};
-
-watch(currentMode, () => {
-  graph.value.setMode(currentMode.value);
-});
-
 onMounted(() => {
   // 创建关系图
-  graph.value = new G6.Graph({
+  const graph = new G6.Graph({
     container: 'mountNode',
     width: 800,
     height: 800,
-    // translate the graph to align the canvas's center, support by v3.5.1
-    // fitCenter: true,
-    // make the edge link to the centers of the end nodes
-    // linkCenter: true,
-    fitView: true,
-    fitViewPadding: 50,
+    modes: {
+      default: ['drag-canvas', 'zoom-canvas'],
+    },
     defaultNode: {
       type: 'circle',
     },
@@ -127,18 +109,14 @@ onMounted(() => {
         stroke: '#F6BD16',
       },
     },
-    modes: {
-      // 支持的 behavior
-      default: ['drag-canvas', 'zoom-canvas'],
-      edit: ['click-select'],
+    layout: {
+      // Object，可选，布局的方法及其配置项，默认为 random 布局。
+      type: 'force', // random默认/force力学/circular环型/Radial辐射状/Grid表格 ……
+      preventOverlap: true,
+      nodeSize: 100,
     },
   });
-  graph.value.data(data); // 读取数据源到图上
-  graph.value.render(); // 渲染图
-
-  graph.value.on('nodeselectchange', (e) => {
-    // 当前操作的 item
-    console.log(e.target);
-  });
+  graph.data(data); // 读取数据源到图上
+  graph.render(); // 渲染图
 });
 </script>

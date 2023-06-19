@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-// 交互模式
+// Combo
 import { onMounted, watch, ref } from 'vue';
 import G6 from '@antv/g6';
 
@@ -18,22 +18,13 @@ const data = {
       x: 100,
       y: 100,
       label: 'node1',
-      type: 'rect',
-      anchorPoints: [
-        [0, 1],
-        [1, 1],
-        [1, 0],
-      ],
-      style: {
-        fill: 'gray',
-      },
+      comboId: 'rect_combo',
     },
     {
       id: '2',
       x: 100,
       y: 400,
       label: 'node2',
-      type: 'circle',
       size: 60,
     },
     {
@@ -41,16 +32,15 @@ const data = {
       x: 400,
       y: 400,
       label: 'node3',
-      type: 'triangle',
-      size: 10,
+      size: 60,
     },
     {
       id: '4',
       x: 400,
       y: 40,
       label: 'node4',
-      type: 'diamond',
       size: 60,
+      comboId: 'circle_combo',
     },
   ],
   // 边集
@@ -58,38 +48,30 @@ const data = {
     {
       source: '1',
       target: '2',
-      type: 'cubic-horizontal',
-      sourceAnchor: 0,
     },
     {
       source: '2',
       target: '3',
-      type: 'cubic',
     },
     {
       source: '1',
       target: '3',
-      label: 'node1->node3',
-      sourceAnchor: 1,
-      type: 'line',
-      style: {
-        startArrow: {
-          path: G6.Arrow.diamond(10, 10),
-          fill: '#ccc',
-          stroke: '#0f0',
-        },
-        endArrow: true,
-      },
     },
     {
       source: '4',
       target: '1',
-      label: 'node1->node4',
-      type: 'polyline',
-      targetAnchor: 2,
-      style: {
-        stroke: '#000',
-      },
+    },
+  ],
+  combos: [
+    {
+      id: 'circle_combo',
+      type: 'circle',
+      label: 'Circle',
+    },
+    {
+      id: 'rect_combo',
+      type: 'rect',
+      label: 'Rect',
     },
   ],
 };
@@ -120,9 +102,10 @@ onMounted(() => {
     fitViewPadding: 50,
     defaultNode: {
       type: 'circle',
+      size: 60,
     },
     defaultEdge: {
-      type: 'polyline',
+      type: 'line',
       style: {
         stroke: '#F6BD16',
       },
@@ -132,6 +115,8 @@ onMounted(() => {
       default: ['drag-canvas', 'zoom-canvas'],
       edit: ['click-select'],
     },
+    // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
+    groupByTypes: false,
   });
   graph.value.data(data); // 读取数据源到图上
   graph.value.render(); // 渲染图
