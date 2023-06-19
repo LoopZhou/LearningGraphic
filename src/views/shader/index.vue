@@ -37,7 +37,8 @@ import vertexShader from './vertex/basic.vert?raw';
 // import fragmentShader from './frag/fwidth-smoothstep.frag?raw';
 // import fragmentShader from './frag/fwidth-checkerboard.frag?raw';
 // import fragmentShader from './frag/raymarch.frag?raw';
-import fragmentShader from './frag/tiles.frag?raw';
+// import fragmentShader from './frag/tiles.frag?raw';
+import fragmentShader from './frag/checkerboard.frag?raw';
 
 const threeRef = ref(null);
 
