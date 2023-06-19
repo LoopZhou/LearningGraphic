@@ -65,6 +65,53 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/g6',
+    name: 'g6',
+    component: () => import('@/views/g6/index.vue'),
+    children: [
+      {
+        path: 'demo',
+        component: () => import('@/views/g6/demo.vue'),
+      },
+      {
+        path: 'demo2',
+        component: () => import('@/views/g6/demo2.vue'),
+      },
+      {
+        path: 'demo3',
+        component: () => import('@/views/g6/demo3.vue'),
+      },
+      {
+        path: 'demo4',
+        component: () => import('@/views/g6/demo4.vue'),
+      },
+      {
+        path: 'demo5',
+        component: () => import('@/views/g6/demo5.vue'),
+      },
+      {
+        path: 'demo6',
+        component: () => import('@/views/g6/demo6.vue'),
+      },
+      {
+        path: 'demo7',
+        component: () => import('@/views/g6/demo7.vue'),
+      },
+      {
+        path: 'demo8',
+        component: () => import('@/views/g6/demo8.vue'),
+      },
+      {
+        path: 'demo9',
+        component: () => import('@/views/g6/demo9.vue'),
+      },
+      {
+        path: 'demo10',
+        component: () => import('@/views/g6/demo10.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
