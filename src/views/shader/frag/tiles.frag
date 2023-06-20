@@ -4,9 +4,15 @@ uniform float time;
 uniform vec2 resolution;
 varying vec2 vUv;
 
+vec2 fixUV() {
+  vec2 uv = (gl_FragCoord.xy - resolution.xy) / min(resolution.y, resolution.x);
+  return uv;
+}
+
 void main () {
-  float aspect_ratio = resolution.y / resolution.x;
-  vec2 uv = vUv - vec2(0.5, 0.5 * aspect_ratio);
+  // float aspect_ratio = resolution.y / resolution.x;
+  // vec2 uv = vUv - vec2(0.5, 0.5 * aspect_ratio);
+  vec2 uv = fixUV() * 0.5;
 
   float rot = radians(-30. -time);
   mat2 rotation_matrix = mat2(cos(rot), -sin(rot), sin(rot), cos(rot));
